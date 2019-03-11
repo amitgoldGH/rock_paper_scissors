@@ -58,6 +58,10 @@
                     console.log("Game cancelled")
                     return;
                 }
+                else if (!(playerSelection in ['rock','paper','scissors'])) {
+                    console.log("Invalid choice, try one last time")
+                    playerSelection = prompt("Enter selection")
+                }
                 computerSelection = computerPlay()
                 console.log("Player chose: " + playerSelection + "\nPC chose: " + computerSelection)
                 switch(playRound(playerSelection, computerSelection)) {
