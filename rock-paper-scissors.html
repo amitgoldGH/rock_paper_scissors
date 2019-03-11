@@ -1,0 +1,90 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    
+    <script>
+        function computerPlay() {
+            optionList = ['rock', 'paper', 'scissors'];
+            choice = Math.floor(Math.random() * Math.floor(3));
+            return optionList[choice];
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            res = 0;
+            switch(playerSelection) {
+                case 'rock':
+                    if (computerSelection === 'rock')
+                        res = 0;
+                    else if (computerSelection === 'paper')
+                        res = -1;
+                    else
+                        res = 1;
+                    break;
+                case 'paper':
+                    if (computerSelection === 'rock')
+                        res = 1;
+                    else if (computerSelection === 'paper')
+                        res = 0;
+                    else
+                        res = -1;
+                    break;
+                case 'scissors':
+                    if (computerSelection === 'rock')
+                        res = -1;
+                    else if (computerSelection === 'paper')
+                        res = 1;
+                    else
+                        res = 0;
+                    break;
+            }
+            switch(res) {
+                case -1:
+                    return 'PC Won'
+                case 0:
+                    return 'Tie'
+                case 1:
+                    return 'Player Won'
+            }
+        }
+
+        function game() {
+            round = 1
+            player_score = 0
+            pc_score = 0
+            while (round <= 5) {
+                console.log("Round: " + round + "\n")
+                playerSelection = prompt('Enter Selection')
+                if (playerSelection == null) {
+                    console.log("Game cancelled")
+                    return;
+                }
+                computerSelection = computerPlay()
+                console.log("Player chose: " + playerSelection + "\nPC chose: " + computerSelection)
+                switch(playRound(playerSelection, computerSelection)) {
+                    case 'PC Won': {
+                        pc_score += 1;
+                        break;
+                    }
+                    case 'Player Won': {
+                        player_score += 1;
+                        break;
+                    }
+                }
+                round += 1;
+            }
+            result = player_score - pc_score;
+            if (result < 0)
+                console.log('PC Won!')
+            else if (result == 0) 
+                console.log("It's a tie!")
+            else {
+                console.log('Player Won!')
+            }
+            console.log("Score:\nPlayer: " + player_score + "\nComputer: " + pc_score)
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
